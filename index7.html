@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time tracker</title>
+    <link rel="stylesheet" href="style7.css">
+</head>
+<body>
+   <div class="stopwatch">
+    <h1 id="displayTime">00:00:00</h1>
+    <div class="buttons">
+      <img src="stop.png" onclick="watchStop()">
+      <img src="start.png" onclick="watchStart()">  
+      <img src="reset.png" onclick="watchReset()">
+    </div>
+   </div> 
+</body>
+<audio  controls  loop >
+    <source src="rt-4uzaf80rlda7s7ok.mp3" type="audio/mp3">
+</audio>
+   <SCRipt>
+    let [seconds ,minutes,hours]=[0,0,0];
+    let displayTime=document.getElementById("displayTime");
+    let timer=null;
+    function stopwatch(){
+        seconds++;
+        if(seconds==60)
+        {
+            seconds=0;
+            minutes++
+        
+        if(minutes==60)
+        {
+            minutes=0;
+            hours++;
+        }
+    }
+   let h =hours < 10 ?"0"+ hours:hours;
+   let m =minutes < 10 ?"0"+ minutes:minutes;
+   let s=seconds < 10 ?"0"+ seconds:seconds;
+
+
+    displayTime.innerHTML=h+":"+m+":"+s;
+    }
+    function watchStart(){
+        if(timer!==null)
+        {
+           clearInterval(timer) ;
+        }
+        timer=setInterval(stopwatch,1000);
+
+    }
+    function watchStop(){
+        clearInterval(timer);
+    }
+    function watchReset(){
+        clearInterval(timer);
+        let [seconds ,minutes,hours]=[0,0,0];
+        displayTime.innerHTML="00:00:00";
+    }
+   </SCRipt>
+  
+
+</html>
